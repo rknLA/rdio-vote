@@ -53,6 +53,24 @@
     });
     $('#you').empty()
       .append(currentUserInfo);
+    setupPlaystate();
+  };
+
+  /* This should only get called after we've authenticated
+   * and have a current User.  Right now, that means it's
+   * only called from initializeVoter.
+   */
+  var setupPlaystate = function() {
+    var currentTrack = R.player.playingTrack();
+    var currentSource = R.player.playingSource();
+    var currentPosition = R.player.position();
+
+    log("currentTrack:");
+    console.log(currentTrack);
+    log("currentSource:");
+    console.log(currentSource);
+    log("currentPosition:");
+    console.log(currentPosition);
   };
 
 
