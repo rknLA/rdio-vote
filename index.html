@@ -10,7 +10,43 @@
     <script src="http://rdio.localhost:8000/api/api.js?helper=helper.html&client_id=bq881iY6dWnBp1juE6oJUg"></script>
   </head>
 
+  <script id="userIdentityTemplate" type="text/x-handlebars-template">
+    <div id="avatar">
+      <img src="{{avatarUrl}}" width="50" height="50" />
+    </div>
+    <div id="userInfo">Logged in as:
+      <span class="userId">{{userName}}</span>
+    </div>
+  </script>
+
   <body>
-    Yo.
+
+    <section class="title">
+    Rdio Station voter
+    </section>
+
+    <div class="loading">
+      Rdio is loading...
+    </div>
+
+    <div id="you">
+    </div>
+
+    <div id="playstate" class="hidden">
+      <div id="current-track">
+        "<span class="track-name"></span>" - 
+        <span class="artist"></span> 
+        (<span class="album"></span>)
+        <br />
+        <span class="elapsed-time"></span>
+      </div>
+    </div>
+
+    <div id="controls">
+      <button id="killdoze">Skip</button>
+      <button id="downvote">DOWN</button>
+      <button id="upboat">UP</button>
+    </div>
+
   </body>
 </html>
