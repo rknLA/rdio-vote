@@ -61,20 +61,6 @@
    * only called from initializeVoter.
    */
   var setupPlaystate = function() {
-    var currentTrack = R.player.playingTrack();
-    var currentSource = R.player.playingSource();
-    var currentPosition = R.player.position();
-
-    log("currentTrack:");
-    console.log(currentTrack);
-    log("currentSource:");
-    console.log(currentSource);
-    log("currentPosition:");
-    console.log(currentPosition);
-
-    if (R.player.playState() == R.player.PLAYSTATE_PLAYING) {
-
-    }
     R.player.on("change:playingTrack", playerTrackDidChange);
     R.player.on("change:playingSource", playerTrackDidChange);
     R.player.on("change:playState", playstateDidChange);
@@ -97,8 +83,25 @@
   };
 
   var playstateDidChange = function(newValue) {
-    log('playstateDidChange');
-    console.log(newValue);
+    if (newValue == R.player.PLAYSTATE_PLAYING) {
+      $('#playstate').empty().append('Playing');
+      var currentTrack = R.player.playingTrack();
+      updatePlayerInfo(currentTrack);
+      $('#current-track').show();
+    } else {
+      $('#playstate').empty().append('Paused');
+      $('#current-track').hide();
+    }
+  };
+
+  var updatePlayerInfo = function (newInfo) {
+    var container = $('#currentTrack');
+    $('.track-name:first', container).empty()
+      .append(newInfo.get('name'));
+    $('.artist:first', container).empty()
+      .append(newInfo.get('artist'));
+    $('.album:first', container).empty()
+      .append(newInfo.get('album'));
   };
 
 
@@ -121,6 +124,6 @@
       }
     }
   };
-
+  {
   R.ready(rdioVoter.onRdioReady);
 })();
