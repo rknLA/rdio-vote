@@ -124,6 +124,6 @@
       }
     }
   };
-  {
+
   R.ready(rdioVoter.onRdioReady);
 })();
