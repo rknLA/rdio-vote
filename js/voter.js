@@ -71,6 +71,34 @@
     console.log(currentSource);
     log("currentPosition:");
     console.log(currentPosition);
+
+    if (R.player.playState() == R.player.PLAYSTATE_PLAYING) {
+
+    }
+    R.player.on("change:playingTrack", playerTrackDidChange);
+    R.player.on("change:playingSource", playerTrackDidChange);
+    R.player.on("change:playState", playstateDidChange);
+    R.player.on("change:position", playstateDidChange);
+  };
+
+  var playerPositionDidChange = function (newValue) {
+    log('playerPositionDidChange ');
+    console.log(newValue);
+  };
+
+  var playerTrackDidChange = function (newValue) {
+    log('playerTrackDidChange ');
+    console.log(newValue);
+  };
+
+  var playerSourceDidChange = function(newValue) {
+    log('playerSourceDidChange ');
+    console.log(newValue);
+  };
+
+  var playstateDidChange = function(newValue) {
+    log('playstateDidChange');
+    console.log(newValue);
   };
 
 
