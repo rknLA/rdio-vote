@@ -96,6 +96,18 @@
     // 1 - skip
     // 2 - favorite
     // 3 - ban 
+    var voteInt;
+    if (vote == 'favorite') {
+      voteInt = 2;
+    } else if (vote == 'skip') {
+      voteInt = 1;
+    } else if (vote == 'ban') {
+      voteInt = 3;
+    } else {
+      return function(e) {
+        console.error('invalid vote parameter');
+      };
+    }
 
     return function (e) {
       e.preventDefault();
@@ -111,12 +123,14 @@
         content: {
           'station_key': station,
           'track_key': track,
-          'vote': vote
+          'vote': voteInt
         },
         success: function (response) {
+          console.log(response);
           $('#vote-results').empty().append('Voted!');
         },
         error: function (response) {
+          console.error(response);
           $('#vote-results').empty().append('Error voting.');
         }
       });
