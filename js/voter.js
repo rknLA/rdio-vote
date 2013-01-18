@@ -137,9 +137,9 @@
       $('#upboat').on('click', handleVote('Favorite'));
       enableControls();
 
-      $('#controls').show();
+      $('#controls').removeClass('hidden');
     } else {
-      $('#controls').hide();
+      $('#controls').addClass('hidden');
       $('#killdoze').off();
       $('#downvote').off();
       $('#upboat').off();
