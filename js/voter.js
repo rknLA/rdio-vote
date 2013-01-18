@@ -93,22 +93,6 @@
   };
 
   var handleVote = function(vote) {
-    // 1 - skip
-    // 2 - favorite
-    // 3 - ban 
-    var voteInt;
-    if (vote == 'favorite') {
-      voteInt = 2;
-    } else if (vote == 'skip') {
-      voteInt = 1;
-    } else if (vote == 'ban') {
-      voteInt = 3;
-    } else {
-      return function(e) {
-        console.error('invalid vote parameter');
-      };
-    }
-
     return function (e) {
       e.preventDefault();
 
@@ -123,7 +107,7 @@
         content: {
           'station_key': station,
           'track_key': track,
-          'vote': voteInt
+          'vote': vote
         },
         success: function (response) {
           console.log(response);
@@ -148,9 +132,9 @@
         newSourceType == 'sr') {
 
       // source is an echonest station, and can be voted.
-      $('#killdoze').on('click', handleVote('skip'));
-      $('#downvote').on('click', handleVote('ban'));
-      $('#upboat').on('click', handleVote('favorite'));
+      $('#killdoze').on('click', handleVote('Skip'));
+      $('#downvote').on('click', handleVote('Ban'));
+      $('#upboat').on('click', handleVote('Favorite'));
       enableControls();
 
       $('#controls').show();
