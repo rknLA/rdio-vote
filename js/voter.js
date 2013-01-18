@@ -98,7 +98,7 @@
   };
 
   var updatePlayerInfo = function (newInfo) {
-    var container = $('#currentTrack');
+    var container = $('#current-track');
     $('.track-name:first', container).empty()
       .append(newInfo.get('name'));
     $('.artist:first', container).empty()
