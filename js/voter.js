@@ -62,7 +62,7 @@
    */
   var setupPlaystate = function() {
     R.player.on("change:playingTrack", playerTrackDidChange);
-    R.player.on("change:playingSource", playerSourceDidChange);
+    R.player.on("change:playingSource", playerDidChange);
     R.player.on("change:playState", playstateDidChange);
     R.player.on("change:position", playstateDidChange);
 
@@ -76,13 +76,75 @@
   };
 
   var playerTrackDidChange = function (newValue) {
-    log('playerTrackDidChange ');
-    console.log(newValue);
+    updatePlayerInfo(newValue);
+  };
+  
+  var enableControls = function() {
+    $('#killdoze').removeAttr('disabled');
+    $('#downvote').removeAttr('disabled');
+    $('#upboat').removeAttr('disabled');
+  };
+
+  var disableControls = function() {
+    $('#killdoze').attr('disabled', 'disabled');
+    $('#downvote').attr('disabled', 'disabled');
+    $('#upboat').attr('disabled', 'disabled');
+  };
+
+  var handleVote = function(vote) {
+    // 1 - skip
+    // 2 - favorite
+    // 3 - ban 
+
+    return function (e) {
+      e.preventDefault();
+
+      // disable buttons, only boat once
+      disableControls();
+
+      var station = R.player.playingSource().get('key');
+      var track = R.player.playingTrack().get('key');
+      
+      R.request({
+        method: "voteForTrackOnStation",
+        content: {
+          'station_key': station,
+          'track_key': track,
+          'vote': vote
+        },
+        success: function (response) {
+          $('#vote-results').empty().append('Voted!');
+        },
+        error: function (response) {
+          $('#vote-results').empty().append('Error voting.');
+        }
+      });
+    };
   };
 
   var playerSourceDidChange = function(newValue) {
     log('playerSourceDidChange ');
     console.log(newValue);
+
+    var newSourceType = newValue.get('type');
+
+    if (newSourceType == 'tp' ||
+        newSourceType == 'rr' ||
+        newSourceType == 'sr') {
+
+      // source is an echonest station, and can be voted.
+      $('#killdoze').on('click', handleVote('skip'));
+      $('#downvote').on('click', handleVote('ban'));
+      $('#upboat').on('click', handleVote('favorite'));
+      enableControls();
+
+      $('#controls').show();
+    } else {
+      $('#controls').hide();
+      $('#killdoze').off();
+      $('#downvote').off();
+      $('#upboat').off();
+    }
   };
 
   var playstateDidChange = function(newValue) {
