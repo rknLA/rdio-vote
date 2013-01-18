@@ -68,6 +68,7 @@
 
     //kick playstateDidChange on load
     playstateDidChange(R.player.playState());
+    playerSourceDidChange(R.player.playingSource());
   };
 
   var playerPositionDidChange = function (newValue) {
