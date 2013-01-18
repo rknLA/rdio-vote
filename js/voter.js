@@ -90,7 +90,7 @@
       $('#playstate').empty().append('Playing');
       var currentTrack = R.player.playingTrack();
       updatePlayerInfo(currentTrack);
-      $('#current-track').show();
+      $('#player-info').show();
     } else {
       $('#playstate').empty().append('Paused');
       $('#current-track').hide();
