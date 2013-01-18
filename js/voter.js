@@ -65,6 +65,9 @@
     R.player.on("change:playingSource", playerTrackDidChange);
     R.player.on("change:playState", playstateDidChange);
     R.player.on("change:position", playstateDidChange);
+
+    //kick playstateDidChange on load
+    playstateDidChange(R.player.playState());
   };
 
   var playerPositionDidChange = function (newValue) {
