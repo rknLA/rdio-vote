@@ -62,7 +62,7 @@
    */
   var setupPlaystate = function() {
     R.player.on("change:playingTrack", playerTrackDidChange);
-    R.player.on("change:playingSource", playerTrackDidChange);
+    R.player.on("change:playingSource", playerSourceDidChange);
     R.player.on("change:playState", playstateDidChange);
     R.player.on("change:position", playstateDidChange);
 
