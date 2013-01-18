@@ -93,7 +93,7 @@
       $('#player-info').show();
     } else {
       $('#playstate').empty().append('Paused');
-      $('#current-track').hide();
+      $('#player-info').hide();
     }
   };
 
