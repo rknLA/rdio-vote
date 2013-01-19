@@ -129,12 +129,17 @@
     if (newValue && newValue.get && typeof(newValue.get) === 'function') {
       newSourceType = newValue.get('type');
     } else {
+      $('#controls').addClass('hidden');
+      $('#killdoze').off();
+      $('#downvote').off();
+      $('#upboat').off();
       return;
     }
 
     if (newSourceType == 'tp' ||
         newSourceType == 'rr' ||
         newSourceType == 'sr') {
+      // this is a bit redundant right now, since .get is only available on these types...
 
       // source is an echonest station, and can be voted.
       $('#killdoze').on('click', handleVote('Skip'));
@@ -143,11 +148,6 @@
       enableControls();
 
       $('#controls').removeClass('hidden');
-    } else {
-      $('#controls').addClass('hidden');
-      $('#killdoze').off();
-      $('#downvote').off();
-      $('#upboat').off();
     }
   };
 
