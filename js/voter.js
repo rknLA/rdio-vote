@@ -125,6 +125,8 @@
     log('playerSourceDidChange ');
     console.log(newValue);
 
+    if (!newValue) return;
+
     var newSourceType = newValue.get('type');
 
     if (newSourceType == 'tp' ||
