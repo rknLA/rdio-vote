@@ -125,9 +125,12 @@
     log('playerSourceDidChange ');
     console.log(newValue);
 
-    if (!newValue) return;
-
-    var newSourceType = newValue.get('type');
+    var newSourceType;
+    if (newValue && newValue.get && typeof(newValue.get) === 'function') {
+      newSourceType = newValue.get('type');
+    } else {
+      return;
+    }
 
     if (newSourceType == 'tp' ||
         newSourceType == 'rr' ||
