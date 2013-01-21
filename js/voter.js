@@ -98,6 +98,7 @@
 
       // disable buttons, only boat once
       disableControls();
+      $('#vote-results').empty().append('Voting...');
 
       var station = R.player.playingSource().get('key');
       var track = R.player.playingTrack().get('key');
@@ -118,7 +119,7 @@
         },
         error: function (response) {
           console.error(response);
-          $('#vote-results').empty().append('Error voting.');
+          $('#vote-results').empty().append('An error happend, couldn\'t vote!');
           enableControls();
         }
       });
