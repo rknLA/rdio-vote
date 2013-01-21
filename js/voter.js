@@ -119,6 +119,7 @@
         error: function (response) {
           console.error(response);
           $('#vote-results').empty().append('Error voting.');
+          enableControls();
         }
       });
     };
@@ -174,6 +175,7 @@
       .append(newInfo.get('artist'));
     $('.album:first', container).empty()
       .append(newInfo.get('album'));
+    $('#vote-results').empty();
   };
 
 
