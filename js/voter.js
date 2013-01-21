@@ -130,14 +130,15 @@
     log('playerSourceDidChange ');
     console.log(newValue);
 
+    $('#killdoze').off();
+    $('#downvote').off();
+    $('#upboat').off();
+
     var newSourceType;
     if (newValue && newValue.get && typeof(newValue.get) === 'function') {
       newSourceType = newValue.get('type');
     } else {
       $('#controls').addClass('hidden');
-      $('#killdoze').off();
-      $('#downvote').off();
-      $('#upboat').off();
       return;
     }
 
