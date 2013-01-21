@@ -112,6 +112,9 @@
         success: function (response) {
           console.log(response);
           $('#vote-results').empty().append('Voted!');
+          if (vote != 'Favorite') {
+            R.player.next();
+          }
         },
         error: function (response) {
           console.error(response);
